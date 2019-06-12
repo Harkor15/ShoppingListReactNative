@@ -1,0 +1,135 @@
+{
+  "project_info": {
+    "project_number": "608356247483",
+    "firebase_url": "https://shopping-list-9617d.firebaseio.com",
+    "project_id": "shopping-list-9617d",
+    "storage_bucket": "shopping-list-9617d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608356247483:android:3db67485b1c07907",
+        "android_client_info": {
+          "package_name": "com.harkor.shoppinglist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "608356247483-kbehgec9c9glsnd6tvjbvstfmle5bvme.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_uxrVwqc3rDugexlYz94MWE6zYPuRRNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "608356247483-kbehgec9c9glsnd6tvjbvstfmle5bvme.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608356247483:android:8d00c8900de858ac",
+        "android_client_info": {
+          "package_name": "com.shoppinglist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "608356247483-kbehgec9c9glsnd6tvjbvstfmle5bvme.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_uxrVwqc3rDugexlYz94MWE6zYPuRRNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "608356247483-kbehgec9c9glsnd6tvjbvstfmle5bvme.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608356247483:android:fcf86fc6c3209052",
+        "android_client_info": {
+          "package_name": "com.shoppinglistapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "608356247483-kbehgec9c9glsnd6tvjbvstfmle5bvme.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_uxrVwqc3rDugexlYz94MWE6zYPuRRNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "608356247483-kbehgec9c9glsnd6tvjbvstfmle5bvme.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608356247483:android:b66d28b4957b0e91",
+        "android_client_info": {
+          "package_name": "harkor.shoppinglist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "608356247483-e8koagleepinkfqngnqhlcc5aueqcasi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "harkor.shoppinglist",
+            "certificate_hash": "cce1b293578bbee622c783c26995901fff1d3518"
+          }
+        },
+        {
+          "client_id": "608356247483-kbehgec9c9glsnd6tvjbvstfmle5bvme.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_uxrVwqc3rDugexlYz94MWE6zYPuRRNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "608356247483-kbehgec9c9glsnd6tvjbvstfmle5bvme.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
