@@ -6,26 +6,67 @@ import firebase from 'react-native-firebase'
 
 export default class MainScreen extends PureComponent {
     state = { user: null, email: '', password: '' }
+
     componentDidMount() {
         console.log('sld', this.props.uid);
 
-        const ref = firebase.firestore().collection('users').doc(this.props.uid).collection("lists");
+       // const db = firebase.firestore();
+       // db.collection("users").document(this.props.uid).collection("lists")
+       //     .get()
+       
+
+
+
+
+        //firebase
+        //    .firestore()
+        //    .runTransaction(async transaction=>{
+        //        const doc = await transaction.get(ref);
+        //    })
+       // this.ref
+       //     .get()
+       //     .then(snapshot => {
+       //         snapshot
+       //             .docs
+       //             .forEach(doc => {
+       //                 console.log("SLD", JSON.parse(doc._document.data.toString()))
+       //             });
+       //     });
+
+
+
+        //this.unsubscribe=this.ref.onSnapshot((querySnapshot) => {
+        //const lists=[];
+        //querySnapshot.forEach((doc)=>{
+        //    lists.push({
+        //        list:doc.data().
+        //    })
+        //})
+        //console.log("sld", querySnapshot.data())
+        // });
+
+
+
+        // const
         //if (ref.exists) {
         //    return ref.data()
         //  } else{
         //      console.log("sld", "error");
         //  }
-        
-        firebase
-            .firestore()
-            .runTransaction(async transaction => {
-                const col = await transaction.get(ref);
-                console.log("sld", col);
-            })
-            .catch(error => {
-                console.log('Transaction failed: ', error);
-              });
-        }
+
+        // firebase
+        //     .firestore()
+        //     .runTransaction(async transaction => {
+        //         const col = await transaction.get(ref);
+        //         console.log("sld", col);
+        //     })
+        //     .catch(error => {
+        //         console.log('Transaction failed: ', error);
+        //       });
+
+
+
+    }
 
 
     render() {
