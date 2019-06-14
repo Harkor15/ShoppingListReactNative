@@ -4,6 +4,7 @@ import { Router, Scene } from 'react-native-router-flux';
 import firebase from 'react-native-firebase';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
+import MainScreen from './screens/MainScreen';
 
 export default class App extends React.Component {
   constructor() {
@@ -11,18 +12,9 @@ export default class App extends React.Component {
     this.state = {};
   }
 
-  async componentDidMount() {
-    // TODO: You: Do firebase things
-    // const { user } = await firebase.auth().signInAnonymously();
-    // console.warn('User -> ', user.toJSON());
-
-    // await firebase.analytics().logEvent('foo', { bar: '123'});
-  }
-
-
   render() {
-return(
-  <Router>
+    return (
+      <Router>
         <Scene key="root" hideNavBar>
           <Scene key="loginScreen"
             component={LoginScreen}
@@ -34,14 +26,19 @@ return(
             component={RegisterScreen}
             title="Register"
           />
+          <Scene
+            key="mainScreen"
+            component={MainScreen}
+            title="Main"
+          />
         </Scene>
       </Router>
-)
+    )
 
     return (
       <ScrollView>
         <View style={styles.container}>
-          <Image source={require('./assets/ReactNativeFirebase.png')} style={[styles.logo]}/>
+          <Image source={require('./assets/ReactNativeFirebase.png')} style={[styles.logo]} />
           <Text style={styles.welcome}>
             Welcome to {'\n'} React Native Firebase
           </Text>
@@ -54,11 +51,11 @@ return(
               Cmd+D or shake for dev menu
             </Text>
           ) : (
-            <Text style={styles.instructions}>
-              Double tap R on your keyboard to reload,{'\n'}
-              Cmd+M or shake for dev menu
+              <Text style={styles.instructions}>
+                Double tap R on your keyboard to reload,{'\n'}
+                Cmd+M or shake for dev menu
             </Text>
-          )}
+            )}
           <View style={styles.modules}>
             <Text style={styles.modulesHeader}>The following Firebase modules are pre-installed:</Text>
             {firebase.admob.nativeModuleExists && <Text style={styles.module}>admob()</Text>}
