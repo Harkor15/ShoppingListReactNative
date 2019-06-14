@@ -1,81 +1,70 @@
 import React, { PureComponent } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import firebase from 'react-native-firebase'
 
 
 export default class MainScreen extends PureComponent {
-    state = { user: null, email: '', password: '' }
-
+    constructor(props) {
+        super(props);
+        this.ref = firebase.firestore().collection('users').doc(this.props.uid).collection("lists");
+        this.unsubscribe = null;
+        this.state = { uid: this.props.uid, lists: null, loading: true };
+    }
     componentDidMount() {
+        this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate)
         console.log('sld', this.props.uid);
+    }
 
-       // const db = firebase.firestore();
-       // db.collection("users").document(this.props.uid).collection("lists")
-       //     .get()
-       
+    componentWillUnmount() {
+        this.unsubscribe();
+    }
+    onCollectionUpdate = (querySnapshot) => {
+        // TODO
+        console.log("sld", querySnapshot);
+        const lists = [];
+        querySnapshot.forEach((doc) => {
+            const { shop_name, budget, products } = doc.data();
 
-
-
-
-        //firebase
-        //    .firestore()
-        //    .runTransaction(async transaction=>{
-        //        const doc = await transaction.get(ref);
-        //    })
-       // this.ref
-       //     .get()
-       //     .then(snapshot => {
-       //         snapshot
-       //             .docs
-       //             .forEach(doc => {
-       //                 console.log("SLD", JSON.parse(doc._document.data.toString()))
-       //             });
-       //     });
-
-
-
-        //this.unsubscribe=this.ref.onSnapshot((querySnapshot) => {
-        //const lists=[];
-        //querySnapshot.forEach((doc)=>{
-        //    lists.push({
-        //        list:doc.data().
-        //    })
-        //})
-        //console.log("sld", querySnapshot.data())
-        // });
-
-
-
-        // const
-        //if (ref.exists) {
-        //    return ref.data()
-        //  } else{
-        //      console.log("sld", "error");
-        //  }
-
-        // firebase
-        //     .firestore()
-        //     .runTransaction(async transaction => {
-        //         const col = await transaction.get(ref);
-        //         console.log("sld", col);
-        //     })
-        //     .catch(error => {
-        //         console.log('Transaction failed: ', error);
-        //       });
-
-
-
+            lists.push({
+                key: doc.id,
+                budget,
+                shop_name,
+                products,
+            });
+        });
+        console.log("sld", lists);
+        this.setState({ lists, loading: false });
+    }
+    itemClick=(item)=>{
+        Actions.detailsScreen(item);
+        //console.log("sld", item);
     }
 
 
+
     render() {
+        if (this.state.loading) {
+            return (
+                <View>
+                    <Text>LOADING</Text>
+                </View>
+            )
+        }
         return (
             <View style={{ flex: 1 }}>
-                <View style={{ flex: 1, }}>
-                    <Text>
-                        Main screen! WTF
-                    </Text>
+                <View style={{ flex: 1 }}>
+                    <FlatList
+                        data={this.state.lists}
+                        renderItem={({ item }) =>
+                        <TouchableOpacity onPress={()=>this.itemClick(item)}>
+                            <View>
+                                <Text style={{fontSize:24}}>{item.shop_name}</Text>
+                                <Text style={{fontSize:18, marginBottom:10}}>${item.budget}</Text>
+                            </View>
+                        </TouchableOpacity>
+                        }
+                    />
                 </View>
                 <View style={{ flex: 0.1, width: "100%", flexDirection: "row", alignItems: "center" }}>
                     <TouchableOpacity style={styles.button} onPress={() => Actions.pop()}>

@@ -7,18 +7,19 @@ import firebase from 'react-native-firebase';
 
 class LoginScreen extends PureComponent {
     state = { user: null, email: '', password: '', errorMessage: null }
+    
     componentDidMount() {
-        
+
         firebase.auth().onAuthStateChanged(user => {
             this.setState({ user });
         })
         console.log("sld", this.state.user);
         if (this.state.user != null) {
-            Actioins.mainScreen({uid: this.state.user._auth._user.uid});
+            Actioins.mainScreen({ uid: this.state.user._auth._user.uid });
         }
     }
     handleLogin = () => {
-        Actions.mainScreen({uid:"ZupUhFFMemdGvKqt98v5u2M7CfE2"}); /////////////////////////////////////////////////////////// TEMPORARY!
+        Actions.mainScreen({ uid: "ZupUhFFMemdGvKqt98v5u2M7CfE2" }); /////////////////////////////////////////////////////////// TEMPORARY!
         //if (this.state.email != '' && this.state.password != "") {
         //    const { email, password } = this.state
         //    firebase

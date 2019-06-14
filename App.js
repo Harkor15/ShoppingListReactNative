@@ -5,6 +5,7 @@ import firebase from 'react-native-firebase';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import MainScreen from './screens/MainScreen';
+import DetailsScreen from './screens/DetailsScreen';
 
 export default class App extends React.Component {
   constructor() {
@@ -30,6 +31,11 @@ export default class App extends React.Component {
             key="mainScreen"
             component={MainScreen}
             title="Main"
+          />
+          <Scene
+            key="detailsScreen"
+            component={DetailsScreen}
+            title="details"
           />
         </Scene>
       </Router>
