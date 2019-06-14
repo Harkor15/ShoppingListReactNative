@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, Platform, Image, Text, View, ScrollView } from 'react-native';
-
+import { Router, Scene } from 'react-native-router-flux';
 import firebase from 'react-native-firebase';
+import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
 
 export default class App extends React.Component {
   constructor() {
@@ -17,7 +19,25 @@ export default class App extends React.Component {
     // await firebase.analytics().logEvent('foo', { bar: '123'});
   }
 
+
   render() {
+return(
+  <Router>
+        <Scene key="root" hideNavBar>
+          <Scene key="loginScreen"
+            component={LoginScreen}
+            title="Login"
+            initial
+          />
+          <Scene
+            key="registerScreen"
+            component={RegisterScreen}
+            title="Register"
+          />
+        </Scene>
+      </Router>
+)
+
     return (
       <ScrollView>
         <View style={styles.container}>
