@@ -51,10 +51,11 @@ export default class MainScreen extends PureComponent {
                 </View>
             )
         }
+        console.log("sld lists", this.state.lists);
         return (
             <View style={{ flex: 1 }}>
                 <View style={{ flex: 1 }}>
-                    <FlatList
+                    <FlatList 
                         data={this.state.lists}
                         renderItem={({ item }) =>
                         <TouchableOpacity onPress={()=>this.itemClick(item)}>
