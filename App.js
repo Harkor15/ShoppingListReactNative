@@ -6,6 +6,7 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import MainScreen from './screens/MainScreen';
 import DetailsScreen from './screens/DetailsScreen';
+import AddNewScreen from './screens/AddNewScreen';
 
 export default class App extends React.Component {
   constructor() {
@@ -35,7 +36,13 @@ export default class App extends React.Component {
           <Scene
             key="detailsScreen"
             component={DetailsScreen}
-            title="details"
+            title="Details"
+          /> 
+          <Scene
+            key="addNewScreen"
+            component={AddNewScreen}
+            title="Add new list"
+            
           />
         </Scene>
       </Router>

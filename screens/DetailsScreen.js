@@ -17,6 +17,13 @@ export default class DetailsScreen extends PureComponent {
         }
         this.state={productsList};
     }
+    deleteClick=()=>{
+
+        Actions.pop();
+    }
+
+
+
     render() {
         
         
@@ -31,13 +38,14 @@ export default class DetailsScreen extends PureComponent {
                 <View style={{ flex: 1 }}>
                     <FlatList
                         data={this.state.productsList}
+                        extraData={this.state.productsList}
                         renderItem={({ item }) =>
                             <View>
                                 <Text style={{margin:2, fontSize:24,marginLeft:10}}> {item.product}</Text>
                             </View>
                         } />
                 </View>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={this.deleteClick}>
                     <Text style={styles.buttonText}> DELETE</Text>
                 </TouchableOpacity>
 

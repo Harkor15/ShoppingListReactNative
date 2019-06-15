@@ -21,7 +21,7 @@ export default class MainScreen extends PureComponent {
     }
     onCollectionUpdate = (querySnapshot) => {
         // TODO
-        console.log("sld", querySnapshot);
+        //console.log("sld", querySnapshot);
         const lists = [];
         querySnapshot.forEach((doc) => {
             const { shop_name, budget, products } = doc.data();
@@ -33,14 +33,16 @@ export default class MainScreen extends PureComponent {
                 products,
             });
         });
-        console.log("sld", lists);
+        //console.log("sld", lists);
         this.setState({ lists, loading: false });
     }
     itemClick=(item)=>{
         Actions.detailsScreen(item);
         //console.log("sld", item);
     }
-
+    addNew=()=>{
+        Actions.addNewScreen({uid: this.props.uid});
+    }
 
 
     render() {
@@ -51,7 +53,7 @@ export default class MainScreen extends PureComponent {
                 </View>
             )
         }
-        console.log("sld lists", this.state.lists);
+        //console.log("sld lists", this.state.lists);
         return (
             <View style={{ flex: 1 }}>
                 <View style={{ flex: 1 }}>
@@ -73,7 +75,7 @@ export default class MainScreen extends PureComponent {
                             LOG OUT
                         </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={this.addNew}>
                         <Text style={styles.buttonText}>
                             ADD NEW LIST
                         </Text>
