@@ -37,7 +37,8 @@ export default class MainScreen extends PureComponent {
         this.setState({ lists, loading: false });
     }
     itemClick=(item)=>{
-        Actions.detailsScreen(item);
+        //const uid= this.props.uid;
+        Actions.detailsScreen( {item: item, uid:this.props.uid});
         //console.log("sld", item);
     }
     addNew=()=>{

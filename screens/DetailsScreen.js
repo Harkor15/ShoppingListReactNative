@@ -4,21 +4,22 @@ import { Actions } from 'react-native-router-flux';
 import firebase from 'react-native-firebase'
 
 
+
 export default class DetailsScreen extends PureComponent {
     constructor(props) {
         super(props);
-       
+        this.ref = firebase.firestore().collection('users').doc(this.props.uid).collection("lists").doc(this.props.item.key);
         const productsList = [];
-        for (let i = 0; i < this.props.products.length; i++) {
+        for (let i = 0; i < this.props.item.products.length; i++) {
             productsList.push({
                 key: 'key'+i,
-                product: this.props.products[i]
+                product: this.props.item.products[i]
             });
         }
         this.state={productsList};
     }
     deleteClick=()=>{
-
+        this.ref.delete();
         Actions.pop();
     }
 
@@ -31,8 +32,8 @@ export default class DetailsScreen extends PureComponent {
         return (
             <View style={{ flex: 1 }}>
                 <View style={{ flex: 0.4 }}>
-                    <Text style={{ fontSize: 32, margin: 5, fontWeight: "bold" }}>{this.props.shop_name}</Text>
-                    <Text style={{ fontSize: 24, margin: 5 }}> ${this.props.budget}</Text>
+                    <Text style={{ fontSize: 32, margin: 5, fontWeight: "bold" }}>{this.props.item.shop_name}</Text>
+                    <Text style={{ fontSize: 24, margin: 5 }}> ${this.props.item.budget}</Text>
                     <Text style={{ fontSize: 30, margin: 5 }}> Products:</Text>
                 </View>
                 <View style={{ flex: 1 }}>
