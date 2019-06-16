@@ -9,7 +9,7 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
 import io.invertase.firebase.RNFirebasePackage;
-// optional packages - add/remove as appropriate
+
 import io.invertase.firebase.admob.RNFirebaseAdMobPackage;
 import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
@@ -42,7 +42,8 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
         new RNFirebasePackage(),
-        // add/remove these packages as appropriate
+       
+
         new RNFirebaseAdMobPackage(),
         new RNFirebaseAnalyticsPackage(),
         new RNFirebaseAuthPackage(),

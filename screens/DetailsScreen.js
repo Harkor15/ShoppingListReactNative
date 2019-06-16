@@ -12,49 +12,68 @@ export default class DetailsScreen extends PureComponent {
         const productsList = [];
         for (let i = 0; i < this.props.item.products.length; i++) {
             productsList.push({
-                key: 'key'+i,
+                key: 'key' + i,
                 product: this.props.item.products[i]
             });
         }
-        this.state={productsList};
+        this.state = { productsList };
     }
-    deleteClick=()=>{
+
+    deleteClick = () => {
         this.ref.delete();
         Actions.pop();
     }
 
-
-
     render() {
-        
-        
-
         return (
-            <View style={{ flex: 1 }}>
-                <View style={{ flex: 0.4 }}>
-                    <Text style={{ fontSize: 32, margin: 5, fontWeight: "bold" }}>{this.props.item.shop_name}</Text>
-                    <Text style={{ fontSize: 24, margin: 5 }}> ${this.props.item.budget}</Text>
-                    <Text style={{ fontSize: 30, margin: 5 }}> Products:</Text>
+            <View style={styles.fullFlex}>
+                <View style={styles.firstSectionSize}>
+                    <Text style={styles.shopName}>{this.props.item.shop_name}</Text>
+                    <Text style={styles.budget}> ${this.props.item.budget}</Text>
+                    <Text style={styles.products}> Products:</Text>
                 </View>
-                <View style={{ flex: 1 }}>
+                <View style={styles.fullFlex}>
                     <FlatList
                         data={this.state.productsList}
                         extraData={this.state.productsList}
                         renderItem={({ item }) =>
                             <View>
-                                <Text style={{margin:2, fontSize:24,marginLeft:10}}> {item.product}</Text>
+                                <Text style={styles.flatListItemText}> {item.product}</Text>
                             </View>
                         } />
                 </View>
                 <TouchableOpacity style={styles.button} onPress={this.deleteClick}>
                     <Text style={styles.buttonText}> DELETE</Text>
                 </TouchableOpacity>
-
             </View>
         )
     }
 }
 const styles = StyleSheet.create({
+    flatListItemText: {
+        margin: 2,
+        fontSize: 24,
+        marginLeft: 10
+    },
+    fullFlex: {
+        flex: 1
+    },
+    products: {
+        fontSize: 30,
+        margin: 5
+    },
+    firstSectionSize: {
+        flex: 0.4
+    },
+    shopName: {
+        fontSize: 32,
+        margin: 5,
+        fontWeight: "bold"
+    },
+    budget: {
+        fontSize: 24,
+        margin: 5
+    },
     button: {
         flex: 0.1,
         alignItems: "center",

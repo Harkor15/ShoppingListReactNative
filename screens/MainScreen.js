@@ -13,19 +13,16 @@ export default class MainScreen extends PureComponent {
     }
     componentDidMount() {
         this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate)
-        console.log('sld', this.props.uid);
     }
 
     componentWillUnmount() {
         this.unsubscribe();
     }
+
     onCollectionUpdate = (querySnapshot) => {
-        // TODO
-        //console.log("sld", querySnapshot);
         const lists = [];
         querySnapshot.forEach((doc) => {
             const { shop_name, budget, products } = doc.data();
-
             lists.push({
                 key: doc.id,
                 budget,
@@ -33,18 +30,16 @@ export default class MainScreen extends PureComponent {
                 products,
             });
         });
-        //console.log("sld", lists);
         this.setState({ lists, loading: false });
     }
-    itemClick=(item)=>{
-        //const uid= this.props.uid;
-        Actions.detailsScreen( {item: item, uid:this.props.uid});
-        //console.log("sld", item);
-    }
-    addNew=()=>{
-        Actions.addNewScreen({uid: this.props.uid});
+
+    itemClick = (item) => {
+        Actions.detailsScreen({ item: item, uid: this.props.uid });
     }
 
+    addNew = () => {
+        Actions.addNewScreen({ uid: this.props.uid });
+    }
 
     render() {
         if (this.state.loading) {
@@ -54,23 +49,22 @@ export default class MainScreen extends PureComponent {
                 </View>
             )
         }
-        //console.log("sld lists", this.state.lists);
         return (
-            <View style={{ flex: 1 }}>
-                <View style={{ flex: 1 }}>
-                    <FlatList 
+            <View style={styles.fullFlex}>
+                <View style={styles.fullFlex}>
+                    <FlatList
                         data={this.state.lists}
                         renderItem={({ item }) =>
-                        <TouchableOpacity onPress={()=>this.itemClick(item)}>
-                            <View>
-                                <Text style={{fontSize:24}}>{item.shop_name}</Text>
-                                <Text style={{fontSize:18, marginBottom:10}}>${item.budget}</Text>
-                            </View>
-                        </TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.itemClick(item)}>
+                                <View>
+                                    <Text style={styles.flatShopName}>{item.shop_name}</Text>
+                                    <Text style={styles.flatBugdet}>${item.budget}</Text>
+                                </View>
+                            </TouchableOpacity>
                         }
                     />
                 </View>
-                <View style={{ flex: 0.1, width: "100%", flexDirection: "row", alignItems: "center" }}>
+                <View style={styles.secondSectionView}>
                     <TouchableOpacity style={styles.button} onPress={() => Actions.pop()}>
                         <Text style={styles.buttonText}>
                             LOG OUT
@@ -89,6 +83,22 @@ export default class MainScreen extends PureComponent {
 
 }
 const styles = StyleSheet.create({
+    fullFlex: {
+        flex: 1
+    },
+    flatShopName: {
+        fontSize: 24
+    },
+    flatBugdet: {
+        fontSize: 18,
+        marginBottom: 10
+    },
+    secondSectionView: {
+        flex: 0.1,
+        width: "100%",
+        flexDirection: "row",
+        alignItems: "center"
+    },
     button: {
         flex: 1,
         alignItems: "center",

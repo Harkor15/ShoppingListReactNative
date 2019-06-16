@@ -12,67 +12,58 @@ export default class AddNewScreen extends PureComponent {
         this.ref = firebase.firestore().collection('users').doc(this.props.uid).collection("lists");
         this.state = { inputField: "", productsList: [], budget: "", shop: "" };
     }
-    componentDidMount() {
-        console.log("sld", this.props.uid)
-    }
+
     addButtonCLick = () => {
         if (this.state.inputField != "") {
             let list = this.state.productsList;
             list.push({ name: this.state.inputField, key: list.length + "" })
             this.setState({ inputField: "", productsList: list });
         }
-
-
     }
 
     doneButtonClick = () => {
-        console.log("sld", this.state.productsList[0]);
         const tab = [];
         for (let i = 0; i < this.state.productsList.length; i++) {
             tab.push(this.state.productsList[i].name)
         }
-        console.log("sld", "try", this.state.shop, this.state.budget, tab);
         if (this.state.shop != "" && this.state.budget != "" && tab.length > 0) {
             this.ref.add({
                 budget: this.state.budget,
                 shop_name: this.state.shop,
                 products: tab
             })
-            console.log("sld", "done");
             Actions.pop();
         }
-
     }
 
     render() {
         return (
-            <View style={{ flex: 1 }}>
-                <Text style={{ margin: 20, fontSize: 30 }}>New shopping list</Text>
-                <Text style={{ marginLeft: 20 }}> Product</Text>
-                <View style={{ flexDirection: "row", marginLeft: 20 }}>
-                    <TextInput underlineColorAndroid={'#ff006a'} style={{ width: '80%' }} value={this.state.inputField}
-                        clearButtonMode='always'
-                        onChangeText={(inputField) => { this.setState({ inputField }) }}></TextInput>
-                    <TouchableOpacity onPress={this.addButtonCLick}
-                        style={{ backgroundColor: 'red', borderRadius: 50, width: 50, height: 50, alignItems: "center" }}>
-                        <Text style={{ color: "white", textAlign: "center", fontSize: 32, }}>+</Text>
+            <View style={styles.fullFlex}>
+                <Text style={styles.title}>New shopping list</Text>
+                <Text style={styles.productInfo}> Product</Text>
+                <View style={styles.firstSection}>
+                    <TextInput underlineColorAndroid={'#ff006a'} style={styles.inputBar} value={this.state.inputField}
+                        clearButtonMode='always' onChangeText={(inputField) => { this.setState({ inputField }) }} />
+                    <TouchableOpacity onPress={this.addButtonCLick} style={styles.addButton}>
+                        <Text style={styles.addButtonText}>+</Text>
                     </TouchableOpacity>
                 </View>
-
-                <FlatList style={{ flex: 1 }} data={this.state.productsList} renderItem={({ item }) =>
-                    <View>
-                        <Text style={{ fontSize: 18, marginLeft: 20, marginTop: 5 }}>{item.name}</Text>
-                    </View>} />
-
+                <FlatList style={styles.fullFlex} data={this.state.productsList}
+                    renderItem={({ item }) =>
+                        <View>
+                            <Text style={styles.listItemText}>{item.name}</Text>
+                        </View>
+                    }
+                />
                 <View style={styles.inputView}>
                     <Text style={styles.fieldText}>Shop:</Text>
-                    <TextInput underlineColorAndroid={'#ff006a'} style={styles.fieldInput} 
-                        onChangeText={(shop) => { this.setState({ shop }) }}> </TextInput>
+                    <TextInput underlineColorAndroid={'#ff006a'} style={styles.fieldInput}
+                        onChangeText={(shop) => { this.setState({ shop }) }} />
                 </View>
                 <View style={styles.inputView}>
                     <Text style={styles.fieldText}>Budget:</Text>
                     <TextInput underlineColorAndroid={'#ff006a'} style={styles.fieldInput}
-                        onChangeText={(budget) => { this.setState({ budget }) }}> </TextInput>
+                        onChangeText={(budget) => { this.setState({ budget }) }} />
                 </View>
                 <TouchableOpacity style={styles.button} onPress={this.doneButtonClick}>
                     <Text style={styles.buttonText} > DONE </Text>
@@ -80,10 +71,44 @@ export default class AddNewScreen extends PureComponent {
             </View>
         )
     }
-
 }
 
 const styles = StyleSheet.create({
+    inputBar: {
+        width: '80%'
+    },
+    firstSection: {
+        flexDirection: "row",
+        marginLeft: 20
+    }
+    ,
+    productInfo: {
+        marginLeft: 20
+    },
+    title: {
+        margin: 20,
+        fontSize: 30
+    },
+    fullFlex: {
+        flex: 1
+    },
+    listItemText: {
+        fontSize: 18,
+        marginLeft: 20,
+        marginTop: 5
+    },
+    addButtonText: {
+        color: "white",
+        textAlign: "center",
+        fontSize: 32,
+    },
+    addButton: {
+        backgroundColor: '#ff006a',
+        borderRadius: 50,
+        width: 50,
+        height: 50,
+        alignItems: "center"
+    },
     button: {
         height: 40,
         alignItems: "center",
